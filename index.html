@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ghép câu vui cùng cô Hiền</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#7cc8f7;--ink:#17406b;--wood1:#e39a3b;--wood2:#b8641c;--green:#3cb43c;--green2:#237a23;
+--safe-t:env(safe-area-inset-top,0px);--safe-b:env(safe-area-inset-bottom,0px);box-sizing:border-box;padding-top:var(--safe-t);padding-bottom:var(--safe-b)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d2c4d}}
+:root[data-theme="dark"]{--bg:#0d2c4d}
+*{box-sizing:border-box}
+html{height:100%;scroll-padding-top:var(--safe-t)}
+body{margin:0;min-height:100%;background:var(--bg);font-family:"Baloo 2","Nunito","Segoe UI",system-ui,sans-serif;color:var(--ink);overflow-x:hidden}
+.scene{position:fixed;inset:0;background:linear-gradient(#4db3f3 0%,#9fdcff 55%,#e6f6ff 100%);z-index:0;overflow:hidden}
+.sun{position:absolute;left:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#fff3a6,#ffd447 70%);box-shadow:0 0 0 14px #ffe98a66,0 0 0 30px #fff3b833}
+.sun::before{content:"";position:absolute;left:52px;top:56px;width:10px;height:12px;border-radius:50%;background:#5b3a1a;box-shadow:26px 0 #5b3a1a}
+.sun::after{content:"";position:absolute;left:60px;top:76px;width:22px;height:11px;border-radius:0 0 22px 22px;background:#c9482b}
+.rainbow{position:absolute;right:-120px;bottom:90px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,transparent 52%,#9b6bff 52% 56%,#4aa3ff 56% 60%,#4cd06b 60% 64%,#ffe14a 64% 68%,#ff9f43 68% 72%,#ff5f6d 72% 76%,transparent 76%);opacity:.85}
+.cloud{position:absolute;background:#fff;border-radius:60px;filter:blur(1px);opacity:.9}
+.cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
+.cloud::before{width:55%;height:160%;left:12%;top:-70%}
+.cloud::after{width:40%;height:130%;right:12%;top:-45%}
+.isl{position:absolute;width:110px;height:60px;animation:float 6s ease-in-out infinite}
+.isl::before{content:"";position:absolute;inset:0 0 auto 0;height:22px;border-radius:50% 50% 30% 30%;background:#6cc24a}
+.isl::after{content:"";position:absolute;left:8%;right:8%;top:16px;height:44px;background:linear-gradient(#a8743f,#7b4f2a);clip-path:polygon(0 0,100% 0,80% 70%,50% 100%,22% 70%)}
+@keyframes float{50%{transform:translateY(-12px)}}
+.wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:10px 14px 24px;min-height:100svh;display:flex;flex-direction:column;align-items:center}
+.tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:4px}
+.tools button,.ctl button{font:inherit;font-weight:700;font-size:.82rem;border:1.5px solid #bfe3c8;background:#fff;color:var(--ink);border-radius:999px;padding:3px 12px;cursor:pointer}
+.title{margin:8px 0 0;padding:6px 34px 8px;border-radius:18px;background:linear-gradient(var(--wood1),var(--wood2));border:4px solid #7ab648;box-shadow:0 5px 0 #7a4210;font-size:clamp(1.4rem,6.2vw,2.3rem);text-align:center;max-width:100%;font-weight:800;line-height:1.15;color:#1f5fd0;text-shadow:-2px -2px 0 #fff,2px -2px 0 #fff,-2px 2px 0 #fff,2px 2px 0 #fff,0 4px 0 #fff}
+.title small{display:block;font-size:.55em;font-weight:700;color:#fff;text-shadow:0 2px 0 #7a4210}
+.hud{margin-top:16px;width:100%;display:flex;justify-content:space-between;align-items:center;background:#ffffffcc;border-radius:999px;padding:5px 16px;font-weight:700;font-size:1rem}
+.stage{flex:1;width:100%;display:flex;flex-direction:column;justify-content:space-between;min-height:340px}
+#pool{display:flex;flex-wrap:wrap;gap:14px 12px;justify-content:center;align-content:center;min-height:170px;padding:22px 6px 10px}
+.card{--r:0deg;--c:#f0dcff;--b:#a56bd6;rotate:var(--r);padding:8px 20px;min-width:58px;text-align:center;font-size:clamp(1.15rem,5vw,1.6rem);font-weight:800;color:#24405e;background:var(--c);border:3px solid var(--b);border-bottom-width:6px;border-radius:16px;cursor:pointer;user-select:none;-webkit-user-select:none;box-shadow:0 6px 12px #1b4a7a33;animation:bob 3s ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes bob{50%{translate:0 -7px}}
+.card:hover{filter:brightness(1.05)}
+.slot .card{animation:none;rotate:0deg;height:100%;border-radius:11px;border-width:2px;border-bottom-width:4px;box-shadow:none;display:grid;place-items:center;padding:0 12px;font-size:clamp(1.05rem,4.4vw,1.4rem)}
+.tray{position:relative;margin-top:6px;padding:46px 22px 34px;background:radial-gradient(ellipse at 50% 30%,#fff 40%,#e4f3ff 100%);border-radius:90px 90px 80px 80px/70px 70px 60px 60px;box-shadow:0 10px 0 #ffffff99,0 14px 24px #1b4a7a33;display:flex;flex-direction:column;align-items:center;gap:14px}
+.tray::before,.tray::after{content:"★";position:absolute;font-size:2rem;color:#ffc928;text-shadow:0 2px 0 #c68a00}
+.tray::before{left:10px;bottom:30px}.tray::after{right:10px;bottom:46px;font-size:2.4rem}
+.hint{background:#e3f8ea;border:1.5px solid #bfe3c8;border-radius:999px;padding:3px 26px;font-weight:700;color:#216b35;text-align:center;max-width:100%}
+.hint.bad{background:#ffe3e3;border-color:#f0a8a8;color:#a12626}
+#slots{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.slot{position:relative;min-width:60px;height:60px;border:2px dashed #b5d6b0;border-radius:14px;background:#f4fbe9;display:grid;place-items:center;font-weight:800;font-size:1.4rem;color:#a9c7a4}
+.slot.filled{border-color:transparent;background:transparent;color:transparent}
+.slot.filled .n{display:none}
+.slot.shake{animation:shake .4s}
+@keyframes shake{25%{translate:-6px 0}75%{translate:6px 0}}
+.ctl{position:relative;z-index:1;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:-10px}
+.ctl button{font-size:.95rem;padding:6px 16px}
+.ctl .go{background:linear-gradient(#5fd35f,var(--green2));color:#fff;border:0;box-shadow:0 3px 0 #1a5a1a}
+.ctl button:disabled{opacity:.45;cursor:default}
+.ctl button[hidden]{display:none}
+.end{text-align:center;padding:30px 10px;font-weight:800}
+.end b{display:block;font-size:2.4rem;color:#1f5fd0}
+.end p{margin:6px 0 14px;font-size:1.2rem}
+.end button{font:inherit;font-weight:800;font-size:1.1rem;border:0;color:#fff;background:linear-gradient(#5fd35f,var(--green2));border-radius:999px;padding:8px 26px;box-shadow:0 3px 0 #1a5a1a;cursor:pointer}
+dialog{border:0;border-radius:18px;padding:18px;max-width:min(520px,92vw);width:100%;font-family:inherit;color:var(--ink)}
+dialog textarea{width:100%;height:230px;font:inherit;font-size:1rem;border:2px solid #bfe3c8;border-radius:12px;padding:8px}
+dialog p{margin:0 0 8px;font-size:.9rem}
+dialog menu{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;align-items:center;padding:0;margin:10px 0 0}
+dialog button{font:inherit;font-weight:700;border-radius:999px;border:1.5px solid #bfe3c8;background:#fff;padding:5px 16px;cursor:pointer}
+@media (prefers-reduced-motion:reduce){.card,.isl{animation:none}}
+</style>
+</head>
+<body>
+<div class="scene" aria-hidden="true">
+  <div class="sun"></div><div class="rainbow"></div>
+  <div class="cloud" style="left:18%;top:26%;width:120px;height:30px"></div>
+  <div class="cloud" style="right:8%;top:14%;width:90px;height:24px"></div>
+  <div class="cloud" style="left:-30px;bottom:30%;width:150px;height:34px"></div>
+  <div class="isl" style="left:-20px;top:45%"></div>
+  <div class="isl" style="right:-10px;top:30%;animation-delay:-2s"></div>
+  <div class="isl" style="left:55%;top:40%;width:60px;animation-delay:-4s;opacity:.7"></div>
+</div>
+<main class="wrap">
+  <div class="tools">
+    <button id="bEdit">✎ Chỉnh sửa</button>
+    <button id="bSnd">♪ Âm thanh: Bật</button>
+    <button id="bFs">⛶ Toàn màn hình</button>
+  </div>
+  <h1 class="title">Ghép câu vui cùng cô Hiền<small>Build a Sentence</small></h1>
+  <div class="hud"><span id="qn">Câu 1 / 10</span><span>★ <span id="sc">0</span> điểm</span></div>
+  <section class="stage" id="stage">
+    <div id="pool" aria-label="Các từ cần sắp xếp"></div>
+    <div class="tray" id="tray">
+      <div class="hint" id="hint">Click the words.</div>
+      <div id="slots"></div>
+    </div>
+  </section>
+  <div class="ctl" id="ctl">
+    <button class="go" id="bCheck">Check</button>
+    <button id="bUndo">↶ Undo</button>
+    <button id="bReset">↻ Try again</button>
+    <button id="bListen">🔊 Listen</button>
+    <button class="go" id="bNext" hidden>Next →</button>
+  </div>
+</main>
+
+<dialog id="dlg">
+  <p>Mỗi dòng là một câu tiếng Anh (ít nhất 2 từ). Bạn có thể tải lên file .txt hoặc .csv, mỗi dòng một câu. Game sẽ chơi lại từ đầu sau khi lưu.</p>
+  <textarea id="ta"></textarea>
+  <menu>
+    <button id="dClear">🗑 Xoá tất cả</button>
+    <button id="dUp">⬆ Tải lên</button>
+    <input type="file" id="dFile" accept=".txt,.csv,text/plain,text/csv" hidden>
+    <span style="flex:1"></span>
+    <button id="dCancel">Hủy</button><button id="dSave">Lưu</button>
+  </menu>
+</dialog>
+
+<script>
+const DEFAULT = [
+ "I am eight years old.","He is reading a book.","She likes playing football.","What time do you get up?",
+ "We go to school every day.","My mother cooks dinner at home.","They are playing in the park.",
+ "Can you help me with this homework?","The cat is sleeping on the sofa.","I usually drink milk in the morning."];
+const PAL = [["#f0dcff","#a56bd6"],["#ffdce8","#e8638f"],["#dcf5c8","#5fb83c"],["#d6ecff","#3b95e0"],["#fff0cf","#e8a03a"]];
+const $ = id => document.getElementById(id);
+let qs = DEFAULT.slice(), i = 0, score = 0, stack = [], locked = false, sound = true, actx;
+
+function tone(freqs, dur = .12) {
+  if (!sound) return;
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    freqs.forEach((f, k) => {
+      const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime + k * dur;
+      o.frequency.value = f; o.type = "triangle";
+      g.gain.setValueAtTime(.15, t); g.gain.exponentialRampToValueAtTime(.001, t + dur);
+      o.connect(g); g.connect(actx.destination); o.start(t); o.stop(t + dur);
+    });
+  } catch (e) {}
+}
+const shuffle = a => { for (let k = a.length - 1; k > 0; k--) { const j = Math.random() * (k + 1) | 0; [a[k], a[j]] = [a[j], a[k]]; } return a; };
+const say = (msg, bad) => { $("hint").textContent = msg; $("hint").classList.toggle("bad", !!bad); };
+
+function move(card, parent) {
+  const a = card.getBoundingClientRect();
+  parent.appendChild(card);
+  const b = card.getBoundingClientRect();
+  if (!matchMedia("(prefers-reduced-motion:reduce)").matches)
+    card.animate([{ transform: `translate(${a.left - b.left}px,${a.top - b.top}px)` }, { transform: "none" }], { duration: 320, easing: "cubic-bezier(.3,1.3,.5,1)" });
+}
+function firstEmpty() { return [...$("slots").children].find(s => !s.querySelector(".card")); }
+function slotCards() { return [...$("slots").children].map(s => s.querySelector(".card")); }
+
+function load() {
+  locked = false; stack = [];
+  const words = qs[i].trim().split(/\s+/);
+  let order = words.map((w, k) => k);
+  for (let t = 0; t < 8; t++) { shuffle(order); if (order.some((v, k) => words[v] !== words[k])) break; }
+  $("pool").innerHTML = ""; $("slots").innerHTML = "";
+  words.forEach((_, k) => { const s = document.createElement("div"); s.className = "slot"; s.innerHTML = `<span class="n">${k + 1}</span>`; $("slots").appendChild(s); });
+  order.forEach((idx, k) => {
+    const c = document.createElement("div"), p = PAL[idx % PAL.length];
+    c.className = "card"; c.textContent = words[idx]; c.dataset.t = words[idx];
+    c.style.setProperty("--c", p[0]); c.style.setProperty("--b", p[1]);
+    c.style.setProperty("--r", (Math.random() * 14 - 7).toFixed(1) + "deg");
+    c.style.setProperty("--d", (-Math.random() * 3).toFixed(2) + "s");
+    c.style.marginTop = (Math.random() * 22) + "px";
+    c.onclick = () => clickCard(c);
+    $("pool").appendChild(c);
+  });
+  $("qn").textContent = `Câu ${i + 1} / ${qs.length}`; $("sc").textContent = score;
+  say("Click the words."); $("bCheck").hidden = false; $("bNext").hidden = true;
+  $("bCheck").disabled = $("bUndo").disabled = $("bReset").disabled = false;
+}
+function clickCard(c) {
+  if (locked) return;
+  const slot = c.closest(".slot");
+  if (slot) { slot.classList.remove("filled"); stack = stack.filter(x => x !== c); c.style.marginTop = (Math.random() * 22) + "px"; move(c, $("pool")); tone([440]); }
+  else { const s = firstEmpty(); if (!s) return; s.classList.add("filled"); stack.push(c); c.style.marginTop = 0; move(c, s); tone([660]); }
+  say("Click the words.");
+}
+$("bUndo").onclick = () => { const c = stack[stack.length - 1]; if (c && !locked) clickCard(c); };
+$("bReset").onclick = () => { if (locked) return; [...stack].forEach(c => clickCard(c)); };
+$("bListen").onclick = () => {
+  try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(qs[i]); u.lang = "en-US"; u.rate = .85; speechSynthesis.speak(u); } catch (e) {}
+};
+$("bCheck").onclick = () => {
+  if (locked) return;
+  const got = slotCards();
+  if (got.some(c => !c)) { say("Hãy xếp đủ các từ nhé!", true); tone([200]); return; }
+  if (got.map(c => c.dataset.t).join(" ") === qs[i].trim().split(/\s+/).join(" ")) {
+    locked = true; score += 10; $("sc").textContent = score;
+    got.forEach(c => { c.style.setProperty("--c", "#c9f2b4"); c.style.setProperty("--b", "#4fb53a"); });
+    say("✓ Excellent! +10 điểm"); tone([523, 659, 784]);
+    $("bCheck").hidden = true; $("bNext").hidden = false; $("bNext").textContent = i === qs.length - 1 ? "Kết quả →" : "Next →";
+    $("bUndo").disabled = $("bReset").disabled = true;
+  } else {
+    say("Chưa đúng, thử lại nhé!", true); tone([300, 220]);
+    $("slots").childNodes.forEach(s => { s.classList.remove("shake"); void s.offsetWidth; s.classList.add("shake"); });
+  }
+};
+$("bNext").onclick = () => { i++; i < qs.length ? load() : finish(); };
+function finish() {
+  $("ctl").hidden = true; $("tray").hidden = true; $("pool").innerHTML = "";
+  const max = qs.length * 10, stars = "★".repeat(Math.round(score / max * 5)) + "☆".repeat(5 - Math.round(score / max * 5));
+  $("pool").innerHTML = `<div class="end"><b>Hoàn thành!</b><p>${stars}<br>${score} / ${max} điểm</p><button id="again">Chơi lại</button></div>`;
+  $("again").onclick = restart; tone([523, 659, 784, 1046]);
+}
+function restart() { i = 0; score = 0; $("ctl").hidden = false; $("tray").hidden = false; load(); }
+
+$("bSnd").onclick = () => { sound = !sound; $("bSnd").textContent = "♪ Âm thanh: " + (sound ? "Bật" : "Tắt"); };
+$("bFs").onclick = () => { try { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); } catch (e) {} };
+$("bEdit").onclick = () => { $("ta").value = qs.join("\n"); $("dlg").showModal(); };
+$("dCancel").onclick = () => $("dlg").close();
+$("dClear").onclick = () => { $("ta").value = ""; $("ta").focus(); };
+$("dUp").onclick = () => $("dFile").click();
+$("dFile").onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => { $("ta").value = String(r.result).replace(/^\uFEFF/, "").split(/\r?\n/).map(s => s.trim()).filter(Boolean).join("\n"); };
+  r.readAsText(f); e.target.value = "";
+};
+$("dSave").onclick = () => {
+  const l = $("ta").value.split("\n").map(s => s.trim()).filter(s => s.split(/\s+/).length >= 2);
+  if (l.length) { qs = l; $("dlg").close(); restart(); }
+};
+load();
+</script>
+</body>
+</html>
